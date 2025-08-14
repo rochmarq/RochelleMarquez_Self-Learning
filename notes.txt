@@ -1,0 +1,8 @@
+the outcome:
+- two working buttons (work and break), one adds time to the clock, one resets the clock
+- available as a desktop app (electron)
+
+to do:
+
+problems i came across:
+- i forgot to initiate npm before installing react lol
