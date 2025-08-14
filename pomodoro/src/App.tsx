@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import logo from './logo.svg';
-import './App.css';
+import './App.css'; 
 
 function App() {
   // time thats remaining
@@ -9,6 +9,53 @@ function App() {
   // stores whether the timer is running or not
   const [isRunning, setIsRunning] = useState(false);
 
+  // break timer
+  const [isBreak, setIsBreak] = useState(false);
+
+  // encouragement text
+  const [encouragement, setEncouragement] = useState("");
+
+  // encouragement text messages
+  const cheerMessages = [
+    "You can do it!",
+    "I believe in you!",
+    "You're amazing!",
+    "Keep going!",
+    "Stay focused!",
+  ];
+
+  const breakMessages = [
+    "Stay hydrated!",
+    "Go get your snacks!",
+    "Text me!",
+    "You're the best!",
+    "Stretch your legs!",
+  ];
+
+  //  encouragement message updater
+  useEffect (() => {
+    let messageInterval: NodeJS.Timeout;
+
+
+    if (isRunning) {
+      // sets the first message initially
+      const messages = isBreak ? breakMessages : cheerMessages;
+      setEncouragement(messages[0]);
+      let index = 1
+
+      // changes the messages every 4 seconds
+      messageInterval = setInterval(() => {
+        setEncouragement(messages[index]);
+        index = (index + 1) % messages.length;
+      }, 4000);
+    } else {
+      setEncouragement("");
+    }
+
+    return () => clearInterval(messageInterval);
+  }, [isRunning, isBreak]);
+
+  // countdown timer
   // see if the timer is running and if the time is greater than zero
   useEffect( () => {
     let timer: NodeJS.Timeout;
@@ -30,13 +77,19 @@ function App() {
     return `${m}:${s}`;
   };
 
-  // function when the start button is clicked
+  const switchMode = (breakMode: boolean) => {
+    setIsBreak(breakMode);
+    setIsRunning(false);
+    setTimeLeft(breakMode ? 5*60 : 25*60);
+  }
+
+  // function when the start/break button is clicked
   const handleClick = () => {
     if (!isRunning) {
       setIsRunning(true);
     } else {
       setIsRunning(false);
-      setTimeLeft(25*60);
+      setTimeLeft(isBreak ? 5*60 : 25*60);
     }
   }
 
@@ -52,18 +105,18 @@ function App() {
         {/* timer buttons */}
         <div className="home-content">
           <div className="home-controls">
-            <button className="image-button">
+            <button className="image-button" onClick= { () => switchMode(false)}>
               Work
             </button>
-            <button className="image-button">
+            <button className="image-button" onClick= { () => switchMode(true)}>
               Break
             </button>
           </div>
         </div>
 
         {/* motivational text */}
-        <p>
-          You can do it!
+        <p className={`encouragement-text ${!isRunning ? "hidden" : ""}`}>
+          {encouragement}
         </p>
 
         <h1 className="home-timer">{formatTime(timeLeft)}</h1>

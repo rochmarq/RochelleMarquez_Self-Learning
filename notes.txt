@@ -3,8 +3,16 @@ the outcome:
 - available as a desktop app (electron)
 
 to do:
+- make the start button for the timer functional
+- make the break button for the timer functional
+- style the timer app itself (maybe using figma or just find icons online)
+- have the app work using electron (currently running through the browser app while im working on it)
+
+possible additions:
+- make the time for the app customizable (rather than just a set 25min work period and 5 min break period)
 
 problems i came across:
 - i forgot to initiate npm before installing react lol
 - forgot to save electron.js before running to test the app (bruh)
-- misspelled Window
+- misspelled Window lol
+- 
