@@ -6,3 +6,5 @@ to do:
 
 problems i came across:
 - i forgot to initiate npm before installing react lol
+- forgot to save electron.js before running to test the app (bruh)
+- misspelled Window
