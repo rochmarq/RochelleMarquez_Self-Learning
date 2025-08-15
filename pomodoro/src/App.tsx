@@ -83,14 +83,10 @@ function App() {
     setTimeLeft(breakMode ? 5*60 : 25*60);
   }
 
-  // function when the start/break button is clicked
-  const handleClick = () => {
-    if (!isRunning) {
-      setIsRunning(true);
-    } else {
-      setIsRunning(false);
-      setTimeLeft(isBreak ? 5*60 : 25*60);
-    }
+  // function when the reset button is clicked
+  const handleReset = () => {
+    setIsRunning(false);
+    setTimeLeft(isBreak ? 5*60 : 25*60);
   }
 
   return (
@@ -121,8 +117,19 @@ function App() {
 
         <h1 className="home-timer">{formatTime(timeLeft)}</h1>
 
-        <button className="home-button" onClick={handleClick}>
-          Start
+        {/* add progress bar here
+        - have progress bar be able to start and reset when start button is clicked
+        - possibly change start button to pause when clicked and add a reset button maybe (YERRRR)
+        - progress bar has to last the same length as timer (use the timeLeft function)
+        */}
+
+        {/* changes between start and pause when clicked */}
+        <button className="home-button" onClick={ () => setIsRunning(!isRunning)}>
+          {isRunning ? "Pause" : "Start"}
+        </button>
+
+        <button className="home-button" onClick={handleReset}>
+          Reset
         </button>
       </div>
     </div>

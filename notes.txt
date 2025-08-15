@@ -5,11 +5,13 @@ the outcome:
 to do:
 - make the start button for the timer functional
 - make the break button for the timer functional
-- style the timer app itself (maybe using figma or just find icons online)
+- style the timer app itself (maybe using figma or just find icons online) (or maybe do some pixel art again if i have time)
 - have the app work using electron (currently running through the browser app while im working on it)
 
 possible additions:
 - make the time for the app customizable (rather than just a set 25min work period and 5 min break period)
+- find a tut that shows how to have editable fields, ideally only lets you input numbers
+- if i cant find that then adding a progress bar will do
 
 problems i came across:
 - i forgot to initiate npm before installing react lol
