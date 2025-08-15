@@ -2,18 +2,22 @@ import React, {useState, useEffect, use} from 'react';
 import logo from './logo.svg';
 import './App.css'; 
 
+import playImg from "./assets/play.png";
+import resetImg from "./assets/reset.png";
+import pauseImg from "./assets/pause.png";
+import workBtnClicked from "./assets/work-clicked.png";
+import workBtn from "./assets/work.png";
+import breakBtnClicked from "./assets/break-clicked.png";
+import breakBtn from "./assets/break.png";
+import closeBtn from "./assets/close.png";
+
 function App() {
-  // time thats remaining
-  const [timeLeft, setTimeLeft] = useState(25*60);
-
-  // stores whether the timer is running or not
-  const [isRunning, setIsRunning] = useState(false);
-
-  // break timer
-  const [isBreak, setIsBreak] = useState(false);
-
-  // encouragement text
-  const [encouragement, setEncouragement] = useState("");
+  const [timeLeft, setTimeLeft] = useState(25*60);   // time thats remaining
+  const [isRunning, setIsRunning] = useState(false);   // stores whether the timer is running or not
+  const [breakButtonImage, setBreakButtonImage] = useState(breakBtn);   // break button
+  const [workButtonImage, setWorkButtonImage] = useState(workBtn);   // work button
+  const [isBreak, setIsBreak] = useState(false);   // break timer
+  const [encouragement, setEncouragement] = useState("");   // encouragement text
 
   // encouragement text messages
   const cheerMessages = [
@@ -23,7 +27,6 @@ function App() {
     "Keep going!",
     "Stay focused!",
   ];
-
   const breakMessages = [
     "Stay hydrated!",
     "Go get your snacks!",
@@ -69,6 +72,11 @@ function App() {
     return() => clearInterval(timer);
   }, [isRunning, timeLeft]);
 
+  // set initial switch mode to false
+  useEffect(() => {
+    switchMode(false);
+  }, []);
+
   // progress bar
   const [totalTime, setTotalTime] = useState(25*60);
   const [progress, setProgress] = useState(0);
@@ -93,6 +101,8 @@ function App() {
     setTotalTime(newTotal);
     setTimeLeft(newTotal);
     setProgress(0);
+    setBreakButtonImage(breakMode ? breakBtnClicked : breakBtn);
+    setWorkButtonImage(breakMode ? workBtn : workBtnClicked)
   };
 
   // function when the reset button is clicked
@@ -103,13 +113,14 @@ function App() {
     setProgress(0);
   };
 
+  const containerClass = `home-container ${isRunning ? "background-green" : ""}`;
 
   return (
-    <div style={{position: 'relative'}}>
+    <div className={containerClass} style={{position: 'relative'}}>
       <div>
         <div>
-          <button className="closeButton">
-            Close
+          <button className="close-button">
+            <img src={closeBtn} alt="Close" />
           </button>
         </div>
 
@@ -117,35 +128,38 @@ function App() {
         <div className="home-content">
           <div className="home-controls">
             <button className="image-button" onClick= { () => switchMode(false)}>
-              Work
+              <img src={workButtonImage} alt="Work" />
             </button>
             <button className="image-button" onClick= { () => switchMode(true)}>
-              Break
+              <img src={breakButtonImage} alt="Break" />
             </button>
           </div>
+        
+          {/* motivational text */}
+          <p className={`encouragement-text ${!isRunning ? "hidden" : ""}`}>
+            {encouragement}
+          </p>
+
+          {/* timer */}
+          <h1 className="home-timer">{formatTime(timeLeft)}</h1>
+
+          {/* progress bar */}
+          <div className='progress' style={{width:'250px',border:'2px solid'}}>
+            <div style={{height:'20px',background:'red',width:`${progress * 100}%`,transition:'width 1s linear'}}></div>
+          </div>
+
+          <div>
+            {/* changes between start and pause when clicked */}
+            <button className="home-button" onClick={ () => setIsRunning(!isRunning)}>
+              <img src={isRunning ? pauseImg : playImg} />
+            </button>
+
+            <button className="home-button" onClick={handleReset}>
+              <img src={resetImg} alt="Reset" />
+            </button>
+          </div>
+
         </div>
-
-        {/* motivational text */}
-        <p className={`encouragement-text ${!isRunning ? "hidden" : ""}`}>
-          {encouragement}
-        </p>
-
-        {/* timer */}
-        <h1 className="home-timer">{formatTime(timeLeft)}</h1>
-
-        {/* progress bar */}
-        <div style={{width:'200px',border:'1px solid'}}>
-          <div style={{height:'20px',background:'red',width:`${progress * 100}%`,transition:'width 1s linear'}}></div>
-        </div>
-
-        {/* changes between start and pause when clicked */}
-        <button className="home-button" onClick={ () => setIsRunning(!isRunning)}>
-          {isRunning ? "Pause" : "Start"}
-        </button>
-
-        <button className="home-button" onClick={handleReset}>
-          Reset
-        </button>
       </div>
     </div>
 

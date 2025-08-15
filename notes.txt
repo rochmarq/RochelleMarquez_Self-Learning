@@ -12,12 +12,21 @@ possible additions:
 - make the time for the app customizable (rather than just a set 25min work period and 5 min break period)
 - find a tut that shows how to have editable fields, ideally only lets you input numbers
 - if i cant find that then adding a progress bar will do
+- change styling of the app from the one i got from the tutorial
+    - have the start/pause button switch between the two even if they're images (it will not be heard inshallah)
 
 problems i came across:
 - i forgot to initiate npm before installing react lol
 - forgot to save electron.js before running to test the app (bruh)
 - misspelled Window lol
 - i dont understand progress bars
+- the progress abr was stuck at full and didnt go down when the timer was going
+    - had to change the progress width to be a percentage rather than a flat number
+    - also had to updae how the progressed time was being read in its useEffect
+- the progress bar was jumping to ~75% complete even though 1s just passed
+    - had to fix the progress bar in the switchMode section because it wasnt updating the totalTime properly
+- the start image isnt showing up as an image (i think its because its inside an if else statement)
+    NEVERMIND IM A GENIUS HAHAHAHAH
 
 
 - have progress bar be able to start and reset when start button is clicked
