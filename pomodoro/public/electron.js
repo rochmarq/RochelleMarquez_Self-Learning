@@ -12,12 +12,7 @@ function createMainWindow() {
         width: 400,
         height: 400,
         frame: false,
-        // titleBarStyle: 'hidden',
-        // webPreferences: {
-        //     preload: path.join(__dirname, "preload.js"),
-        //     contextIsolation: true,
-        //     nodeIntegration: false,
-        // }
+        alwaysOnTop: true,
     });
 
     // connects to the react app
