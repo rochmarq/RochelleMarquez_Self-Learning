@@ -144,8 +144,8 @@ function App() {
           <h1 className="home-timer">{formatTime(timeLeft)}</h1>
 
           {/* progress bar */}
-          <div className='progress' style={{width:'250px',border:'2px solid'}}>
-            <div style={{height:'20px',background:'red',width:`${progress * 100}%`,transition:'width 1s linear'}}></div>
+          <div className='progress' style={{background:'#8b0740', width:'250px',border:'3px solid #4b0121'}}>
+            <div style={{height:'20px',background:'#f85099',width:`${progress * 100}%`,transition:'width 1s linear'}}></div>
           </div>
 
           <div>

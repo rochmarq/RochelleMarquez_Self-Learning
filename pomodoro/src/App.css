@@ -1,9 +1,15 @@
+@font-face {
+  font-family: 'Retrograde-Regular';
+  src: url('./assets/Retrograde-Regular.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+
 body {
+  font-family: 'Retrograde-Regular', sans-serif;
   margin: 0;
   padding: 0;
 }
-
-
 
 .home-container {
   -webkit-app-region: drag;
@@ -31,16 +37,16 @@ body {
   justify-content: space-between;
   height: 100%;
   width: 100%;
-  padding-top: 60px;
+  padding-top: 85px;
   padding-bottom: 20px;
   box-sizing: border-box;
 }
 
 .encouragement-text {
-  height: 22px;
+  height: 16px;
   font-size: 1.25rem;
-  color: #b1cad8;
-  margin:  15px 0 5px;
+  color: #ffb5d6;
+  margin:  11px 0 13px;
   animation: fadeIn 1s ease-in-out;
   transition: opacity 0.8s ease;
 }
@@ -50,7 +56,7 @@ body {
 }
 
 .background-green {
-  background-image: url('./assets/background-green.png');
+  background-image: url('./assets/background-green.gif');
 }
 
 .home-controls {
@@ -66,13 +72,13 @@ body {
 }
 
 .image-button img {
-  width: 100px;
+  width: 120px;
 }
 
 .home-timer {
   font-size: 60px;
-  color: #d09caf;
-  margin: 0;
+  color: #fff;
+  margin: 7px 0 0;
 }
 
 .gif-image {
@@ -91,7 +97,7 @@ body {
 
 .close-button {
   position: absolute;
-  top: 10px;
+  top: 15px;
   right: 10px;
   background: none;
   border: none;
@@ -99,10 +105,10 @@ body {
 }
 
 .close-button img {
-  width: 30px;
-  height: 30px;
+  width: 40px;
+  height: 40px;
 }
 
 .progress {
-  margin: 5px 0 15px;
+  margin: 0 0 15px;
 }
