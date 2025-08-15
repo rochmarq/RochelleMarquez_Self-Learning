@@ -69,6 +69,15 @@ function App() {
     return() => clearInterval(timer);
   }, [isRunning, timeLeft]);
 
+  // progress bar
+  const [totalTime, setTotalTime] = useState(25*60);
+  const [progress, setProgress] = useState(0);
+
+  useEffect(() => {
+    const percentage = (totalTime - timeLeft) / totalTime;
+    setProgress(percentage)
+  }, [timeLeft, totalTime]);
+
   // formatting the timer to have two digits for the minutes and seconds sections
   const formatTime = (seconds: number): string => {
     const m = Math.floor(seconds / 60).toString().padStart(2, '0');
@@ -78,19 +87,22 @@ function App() {
   };
 
   const switchMode = (breakMode: boolean) => {
+    const newTotal = breakMode ? 5*60 : 25*60;
     setIsBreak(breakMode);
     setIsRunning(false);
-    setTimeLeft(breakMode ? 5*60 : 25*60);
+    setTotalTime(newTotal);
+    setTimeLeft(newTotal);
+    setProgress(0);
   };
 
   // function when the reset button is clicked
   const handleReset = () => {
+    const newTotal = isBreak ? 5*60 : 25*60;
     setIsRunning(false);
-    setTimeLeft(isBreak ? 5*60 : 25*60);
+    setTimeLeft(newTotal);
+    setProgress(0);
   };
 
-  // progress bar
-  const progress = (30 - timeLeft) / 30;
 
   return (
     <div style={{position: 'relative'}}>
@@ -118,17 +130,12 @@ function App() {
           {encouragement}
         </p>
 
+        {/* timer */}
         <h1 className="home-timer">{formatTime(timeLeft)}</h1>
 
-        {/* add progress bar here
-        - have progress bar be able to start and reset when start button is clicked
-        - possibly change start button to pause when clicked and add a reset button maybe (YERRRR)
-        - progress bar has to last the same length (time-wise) as timer (use the timeLeft function)
-        - progress bar has to pause when the pause button is clicked
-        */}
-
+        {/* progress bar */}
         <div style={{width:'200px',border:'1px solid'}}>
-          <div style={{height:'20px',background:'red',width:`${progress * 100}`}}></div>
+          <div style={{height:'20px',background:'red',width:`${progress * 100}%`,transition:'width 1s linear'}}></div>
         </div>
 
         {/* changes between start and pause when clicked */}

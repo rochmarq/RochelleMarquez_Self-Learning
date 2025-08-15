@@ -17,4 +17,10 @@ problems i came across:
 - i forgot to initiate npm before installing react lol
 - forgot to save electron.js before running to test the app (bruh)
 - misspelled Window lol
-- 
+- i dont understand progress bars
+
+
+- have progress bar be able to start and reset when start button is clicked
+- possibly change start button to pause when clicked and add a reset button maybe (YERRRR)
+- progress bar has to last the same length (time-wise) as timer (use the timeLeft function)
+- progress bar has to pause when the pause button is clicked
