@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, use} from 'react';
 import logo from './logo.svg';
 import './App.css'; 
 
@@ -81,13 +81,16 @@ function App() {
     setIsBreak(breakMode);
     setIsRunning(false);
     setTimeLeft(breakMode ? 5*60 : 25*60);
-  }
+  };
 
   // function when the reset button is clicked
   const handleReset = () => {
     setIsRunning(false);
     setTimeLeft(isBreak ? 5*60 : 25*60);
-  }
+  };
+
+  // progress bar
+  const progress = (30 - timeLeft) / 30;
 
   return (
     <div style={{position: 'relative'}}>
@@ -120,8 +123,13 @@ function App() {
         {/* add progress bar here
         - have progress bar be able to start and reset when start button is clicked
         - possibly change start button to pause when clicked and add a reset button maybe (YERRRR)
-        - progress bar has to last the same length as timer (use the timeLeft function)
+        - progress bar has to last the same length (time-wise) as timer (use the timeLeft function)
+        - progress bar has to pause when the pause button is clicked
         */}
+
+        <div style={{width:'200px',border:'1px solid'}}>
+          <div style={{height:'20px',background:'red',width:`${progress * 100}`}}></div>
+        </div>
 
         {/* changes between start and pause when clicked */}
         <button className="home-button" onClick={ () => setIsRunning(!isRunning)}>
