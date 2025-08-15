@@ -115,11 +115,19 @@ function App() {
 
   const containerClass = `home-container ${isRunning ? "background-green" : ""}`;
 
+  const handleCloseClick = () => {
+    if (window.electronAPI?.closeApp) {
+      window.electronAPI.closeApp();
+    } else {
+      console.warn("Electron API not available");
+    }
+  };
+
   return (
     <div className={containerClass} style={{position: 'relative'}}>
       <div>
         <div>
-          <button className="close-button">
+          <button className="close-button" onClick={handleCloseClick}>
             <img src={closeBtn} alt="Close" />
           </button>
         </div>

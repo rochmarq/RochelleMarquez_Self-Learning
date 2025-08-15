@@ -15,7 +15,7 @@ body {
   -webkit-app-region: drag;
   width: 400px;
   height: 400px;
-  background-image: url('./assets/background-blue.png');
+  background-image: url('./assets/background-static.png');
   background-size: cover;
   background-position: center;
   display: flex;
@@ -56,7 +56,7 @@ body {
 }
 
 .background-green {
-  background-image: url('./assets/background-green.gif');
+  background-image: url('./assets/background-moving.gif');
 }
 
 .home-controls {

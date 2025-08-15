@@ -13,6 +13,11 @@ function createMainWindow() {
         height: 400,
         frame: false,
         alwaysOnTop: true,
+        webPreferences: {
+            preload: path.join(__dirname, "preload.js"),    // path to preload script
+            contextIsolation: true, // keeps context isolated for security
+            nodeIntegration: false  // disables node.js in the renderer
+        }
     });
 
     // connects to the react app
@@ -24,6 +29,11 @@ function createMainWindow() {
 
     // loads the app in an electron window
     mainWindow.loadURL(startUrl);
+
+    // listen for the clsoe app button click
+    ipcMain.on('close-app', () => {
+        app.quit();
+    });
 };
 
 app.whenReady().then(createMainWindow);

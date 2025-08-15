@@ -38,6 +38,9 @@ problems i came across:
 
 ME WHEN THE PROBLEM WAS I DIDNT CAPITALIZE URL IN THE LOADURL FUNCTION LOOOOOL
 
+- close button doesnt work in electron app
+    - me when i miss parentheses :skull:
+
 
 - have progress bar be able to start and reset when start button is clicked
 - possibly change start button to pause when clicked and add a reset button maybe (YERRRR)
