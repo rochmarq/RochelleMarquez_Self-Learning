@@ -27,6 +27,15 @@ problems i came across:
     - had to fix the progress bar in the switchMode section because it wasnt updating the totalTime properly
 - the start image isnt showing up as an image (i think its because its inside an if else statement)
     NEVERMIND IM A GENIUS HAHAHAHAH
+- the app is not loading when using electron (doesnt even work with the tutorial timer when i downloaded the file and ran it.. strange)
+    - only appears as a blank/white app but it's sized correctly to the dimensions given in the electron.js file
+    - the error i get:
+
+(node:31880) UnhandledPromiseRejectionWarning: TypeError: mainWindow.setWindowButtonVisibility is not a function
+    at createMainWindow (C:\Users\rochm\Desktop\work_faster-main\public\electron.js:28:16)
+(Use `electron --trace-warnings ...` to show where the warning was created)
+(node:31880) UnhandledPromiseRejectionWarning: Unhandled promise rejection. This error originated either by throwing inside of an async function without a catch block, or by rejecting a promise which was not handled with .catch(). To terminate the node process on unhandled promise rejection, use the CLI flag `--unhandled-rejections=strict` (see https://nodejs.org/api/cli.html#cli_unhandled_rejections_mode). (rejection id: 1)
+ME WHEN THE PROBLEM WAS I DIDNT CAPITALIZE URL IN THE LOADURL FUNCTION LOOOOOL
 
 
 - have progress bar be able to start and reset when start button is clicked

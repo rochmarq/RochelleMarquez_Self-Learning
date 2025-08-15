@@ -3,7 +3,10 @@ body {
   padding: 0;
 }
 
+
+
 .home-container {
+  -webkit-app-region: drag;
   width: 400px;
   height: 400px;
   background-image: url('./assets/background-blue.png');
@@ -15,6 +18,10 @@ body {
   border-radius: 12px;
   box-sizing: border-box;
   text-align: center;
+}
+
+.home-container button {
+    -webkit-app-region: no-drag;
 }
 
 .home-content {

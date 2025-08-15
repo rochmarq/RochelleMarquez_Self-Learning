@@ -1,5 +1,6 @@
 // importing app and browser window from electron
 const {app, BrowserWindow} = require('electron');
+const {ipcMain} = require("electron");
 
 // specifies where the data we want to fetch is from (from react)
 const url = require('url');
@@ -9,7 +10,14 @@ function createMainWindow() {
     const mainWindow = new BrowserWindow({
         title: 'Pomodoro',
         width: 400,
-        hight: 430,
+        height: 400,
+        frame: false,
+        // titleBarStyle: 'hidden',
+        // webPreferences: {
+        //     preload: path.join(__dirname, "preload.js"),
+        //     contextIsolation: true,
+        //     nodeIntegration: false,
+        // }
     });
 
     // connects to the react app
@@ -20,7 +28,7 @@ function createMainWindow() {
     });
 
     // loads the app in an electron window
-    mainWindow.loadUrl(startUrl);
-}
+    mainWindow.loadURL(startUrl);
+};
 
-app.whenReady().then(createMainWindow)
+app.whenReady().then(createMainWindow);
